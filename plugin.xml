@@ -1,0 +1,44 @@
+<plugin name='spring-security-cas-usf' version='1.1.1' grailsVersion='1.2.3 &gt; *'>
+  <author>Eric Pierce</author>
+  <authorEmail>epierce@usf.edu</authorEmail>
+  <title>USF CAS Spring Security plugin.</title>
+  <description>USF-specific changes to the CAS Spring Security plugin.</description>
+  <documentation>http://bullpen.jira.com/wiki</documentation>
+  <type>SpringSecurityCasUsfGrailsPlugin</type>
+  <resources>
+    <resource>DefaultCasSecurityConfig</resource>
+    <resource>LoginController</resource>
+    <resource>LogoutController</resource>
+    <resource>edu.usf.cims.UsfCasService</resource>
+    <resource>edu.usf.cims.UsfCasUserDetailsService</resource>
+    <resource>org.codehaus.groovy.grails.plugins.springsecurity.cas.CasAuthenticationUserDetailsService</resource>
+    <resource>org.codehaus.groovy.grails.plugins.springsecurity.cas.DomainUserMapperService</resource>
+    <resource>edu.usf.cims.CASTagLib</resource>
+  </resources>
+  <repositories>
+    <repository name='grailsCentral' url='http://plugins.grails.org' />
+    <repository name='http://repo.grails.org/grails/plugins' url='http://repo.grails.org/grails/plugins/' />
+    <repository name='http://repo.grails.org/grails/core' url='http://repo.grails.org/grails/core/' />
+    <repository name='grailsCore' url='http://svn.codehaus.org/grails/trunk/grails-plugins' />
+    <repository name='ebrRelease' url='http://repository.springsource.com/maven/bundles/release/' />
+    <repository name='ebrExternal' url='http://repository.springsource.com/maven/bundles/external/' />
+    <repository name='mavenCentral' url='http://repo1.maven.org/maven2/' />
+    <repository name='http://snapshots.repository.codehaus.org' url='http://snapshots.repository.codehaus.org/' />
+    <repository name='http://repository.codehaus.org' url='http://repository.codehaus.org/' />
+    <repository name='http://download.java.net/maven/2/' url='http://download.java.net/maven/2/' />
+    <repository name='http://repository.jboss.com/maven2/' url='http://repository.jboss.com/maven2/' />
+  </repositories>
+  <dependencies>
+    <compile>
+      <dependency group='org.springframework.security' name='org.springframework.security.cas' version='3.0.4.RELEASE' />
+      <dependency group='xml-security' name='xmlsec' version='1.3.0' />
+      <dependency group='org.jasig.cas' name='com.springsource.org.jasig.cas.client' version='3.1.8' />
+      <dependency group='org.opensaml' name='opensaml' version='1.1' />
+    </compile>
+  </dependencies>
+  <plugins />
+  <runtimePluginRequirements>
+    <plugin name='springSecurityCore' version='1.0 &gt; *' />
+  </runtimePluginRequirements>
+  <behavior />
+</plugin>
