@@ -1,0 +1,12 @@
+h1. cas:ifLoggedIn
+
+h2. Purpose
+Displays the inner body content if the user is authenticated.
+
+h2. Example
+
+{code}
+<cas:ifLoggedIn>
+Welcome Back!
+</cas:ifLoggedIn>
+{code}

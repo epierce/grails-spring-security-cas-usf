@@ -1,7 +1,6 @@
 grails.project.class.dir = 'target/classes'
 grails.project.test.class.dir = 'target/test-classes'
 grails.project.test.reports.dir	= 'target/test-reports'
-grails.project.docs.output.dir = 'docs' // for backwards-compatibility, the docs are checked into gh-pages branch
 
 //Add JIRA Studio as a plugin repository
 grails.plugin.repos.discovery.usfRepository = "https://bullpen.jira.com/svn/GRAILSPLUGIN"

@@ -1,0 +1,15 @@
+h1. cas:username
+
+h2. Purpose
+Displays the value of the authentication @username@ field if logged in.
+
+h2. Example
+
+{code}
+<cas:ifLoggedIn>
+Welcome Back <cas:username/>!
+</cas:ifLoggedIn>
+<cas:ifNotLoggedIn>
+<g:link controller='login' action='auth'>Login</g:link>
+</cas:ifNotLoggedIn>
+{code}

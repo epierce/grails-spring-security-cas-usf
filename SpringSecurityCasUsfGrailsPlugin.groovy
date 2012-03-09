@@ -36,7 +36,6 @@ class SpringSecurityCasUsfGrailsPlugin {
 	String grailsVersion = '1.2.3 > *'
 	Map dependsOn = [springSecurityCore: '1.0 > *']
 	List pluginExcludes = [
-		'docs/**',
 		'src/docs/**',
 		'scripts/CreateCasTestApps.groovy',
 		'grails-app/views/casTest/**',

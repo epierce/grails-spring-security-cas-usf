@@ -1,0 +1,10 @@
+h1. cas:eppa
+
+h2. Purpose
+Displays the value of the EduPersonPrimaryAffiliation if logged in.
+
+h2. Example
+
+{code}
+Your Primary Affiliation is <cas:eppa/>
+{code}

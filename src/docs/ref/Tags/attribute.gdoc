@@ -1,0 +1,16 @@
+h1. cas:attribute
+
+h2. Purpose
+Displays the value of the specified attribute if logged in. 
+
+{warning}
+All attributes are released to the Grails development enviroment (http://localhost:8080)   When you move
+from that URL, you must request attributes be released to your application.  Email your request to _cims-tech-core@mail.usf.edu_ for review
+{warning} 
+
+
+h2. Example
+{code}
+Welcome back, <cas:attribute name="CommonName"/>
+Your Email address is <cas:attribute name="mail"/>
+{code}

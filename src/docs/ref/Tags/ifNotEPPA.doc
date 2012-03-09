@@ -1,0 +1,21 @@
+h1. cas:ifNotEPPA
+
+h2. Purpose
+Displays the inner body content only if the user's EPPA *does not* match the listed value 
+Allowed values for EPPA are:
+
+* Student
+* Staff
+* Faculty
+* Alumni
+* Affiliate
+
+{note}
+@Alumni@ are current members of the USF Alumni Association
+{note}
+
+h2. Example
+<cas:ifNotEPPA eppa="student">
+This text is not visible to students
+</cas:ifNotEPPA>
+{code}

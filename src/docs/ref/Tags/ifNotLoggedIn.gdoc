@@ -1,0 +1,13 @@
+h1. cas:ifNotLoggedIn
+
+h2. Purpose
+Displays the inner body content if the user is not authenticated.
+
+h2. Example
+
+{code}
+<cas:ifNotLoggedIn>
+<g:link controller='login' action='auth'>Login</g:link>
+</cas:ifNotLoggedIn>
+{code}
+

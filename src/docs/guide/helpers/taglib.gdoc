@@ -1,0 +1,73 @@
+The plugin includes GSP tags to support conditional display based on whether the user is authenticated, and/or has 
+the required EduPersonAffiliation or SpringSecurityRole to perform a particular action. These tags are in the @cas@ namespace and are implemented in @edu.usf.cims.CASTagLib@.
+
+h4. ifLoggedIn
+Displays the inner body content if the user is authenticated.
+
+Example:
+
+{code}
+<cas:ifLoggedIn>
+Welcome Back!
+</cas:ifLoggedIn>
+{code}
+
+h4. ifNotLoggedIn
+Displays the inner body content if the user is not authenticated.
+
+Example:
+
+{code}
+<cas:ifNotLoggedIn>
+<g:link controller='login' action='auth'>Login</g:link>
+</cas:ifNotLoggedIn>
+{code}
+
+h4. ifEPPA
+Displays the inner body content only if the user's EPPA matches the listed value
+
+Example:
+
+{code}
+<cas:ifEPPA eppa="faculty">
+This text is only visible by faculty
+</cas:ifEPPA>
+{code}
+
+h4. ifNotEPPA
+Displays the inner body content only if the user's EPPA *does not* match the listed value
+
+Example:
+
+{code}
+<cas:ifNotEPPA eppa="student">
+Students can't read this
+</cas:ifNotEPPA>
+{code}
+
+
+h4. attribute
+Displays the value of the specified attribute if logged in. For example, to show the @mail@ property:
+
+{code}
+<cas:attribute name="mail"/>
+{code}
+
+h4. username
+Displays the value of the authentication @username@ field if logged in.
+
+{code}
+<cas:ifLoggedIn>
+Welcome Back <cas:username/>!
+</cas:ifLoggedIn>
+<cas:ifNotLoggedIn>
+<g:link controller='login' action='auth'>Login</g:link>
+</cas:ifNotLoggedIn>
+{code}
+
+h4. eppa
+Displays the value of the EduPersonPrimaryAffiliation if logged in.
+
+{code}
+Your Primary Affiliation is <cas:eppa/>
+{code}

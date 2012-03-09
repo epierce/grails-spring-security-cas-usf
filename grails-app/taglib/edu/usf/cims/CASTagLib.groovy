@@ -26,7 +26,7 @@ class CASTagLib {
 	   if (usfCasService.isLoggedIn()) {
 		   Map attributes = usfCasService.attributes
 		   if (attributes.containsKey(field)){
-			   out <<  attributes.get(field).encodeAsHTML()
+			   out <<  attributes[field].encodeAsHTML()
 		   }
 	   }
    }

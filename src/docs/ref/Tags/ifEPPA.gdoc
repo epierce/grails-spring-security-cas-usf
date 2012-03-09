@@ -1,0 +1,21 @@
+h1. cas:ifEPPA
+
+h2. Purpose
+Displays the inner body content only if the user's EPPA matches the listed value 
+Allowed values for EPPA are:
+
+* Student
+* Staff
+* Faculty
+* Alumni
+* Affiliate
+
+{note}
+@Alumni@ are current members of the USF Alumni Association
+{note}
+
+h2. Example
+<cas:ifEPPA eppa="faculty">
+This text is only visible by faculty
+</cas:ifEPPA>
+{code}
