@@ -6,8 +6,14 @@ This guide assumes that you are using authtest.it.usf.edu for development and te
 
 There isn't much that you need to do in your application to be a CAS client. Just install this plugin, run the configuration script, and modify any of the default values you want in Config.groovy. These are described in detail in [configuration|guide:configuration] but in most cases, you won't need to change anything during development.
 
-h4. grails usf-cas-config
+h4. Installation
+Download the latest version of the plugin zip file from https://bullpen.jira.com/wiki/display/USFGRAILSCAS/spring-security-usf-cas+Grail+Plugin and drop it into the /lib directory of your Grails project.
+{code}
+grails install-plugin spring-security-core
+grails install-plugin grails-spring-security-usf-cas
+{code}
 
+h4. grails usf-cas-config
 After you have installed the plugin, run this command to add the necessary configuration options:
 
 {code}
