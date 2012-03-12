@@ -32,7 +32,7 @@ import org.springframework.security.core.userdetails.UserDetailsByNameServiceWra
 
 class SpringSecurityCasUsfGrailsPlugin {
 
-	String version = '1.1.1'
+	String version = '1.2.0'
 	String grailsVersion = '1.2.3 > *'
 	Map dependsOn = [springSecurityCore: '1.0 > *']
 	List pluginExcludes = [

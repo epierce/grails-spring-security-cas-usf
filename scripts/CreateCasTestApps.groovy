@@ -41,7 +41,7 @@ private void init(String name, config) {
 		error "pluginVersion wasn't specified for config '$name'"
 	}
 
-	pluginZip = new File(basedir, "grails-spring-security-cas-${pluginVersion}.zip")
+	pluginZip = new File(basedir, "grails-spring-security-cas-usf-${pluginVersion}.zip")
 	if (!pluginZip.exists()) {
 		error "plugin $pluginZip.absolutePath not found"
 	}
@@ -76,6 +76,11 @@ private void installPlugin() {
 		it.writeLine 'grails.project.plugins.dir = "plugins"'
 	}
 
+        ant.mkdir dir: "${testprojectRoot}/plugins"
+        callGrails(grailsHome, testprojectRoot, 'dev', 'install-plugin') {
+                ant.arg value: 'spring-security-core 1.2.7.2'
+        }
+
 	ant.mkdir dir: "${testprojectRoot}/plugins"
 	callGrails(grailsHome, testprojectRoot, 'dev', 'install-plugin') {
 		ant.arg value: pluginZip.absolutePath
@@ -83,10 +88,7 @@ private void installPlugin() {
 }
 
 private void runQuickstart() {
-	callGrails(grailsHome, testprojectRoot, 'dev', 's2-quickstart') {
-		ant.arg value: 'com.testcas'
-		ant.arg value: 'User'
-		ant.arg value: 'Role'
+	callGrails(grailsHome, testprojectRoot, 'dev', 'usf-cas-config') {
 	}
 }
 
@@ -133,11 +135,11 @@ private void deleteDir(String path) {
 
 private void error(String message) {
 	ant.echo "\nERROR: $message"
-	exit 1
+	//exit 1
 }
 
 private void callGrails(String grailsHome, String dir, String env, String action, extraArgs = null) {
-	ant.exec(executable: "${grailsHome}/bin/grails", dir: dir, failonerror: 'true') {
+	ant.exec(executable: "${grailsHome}/bin/grails", dir: dir, failonerror: 'true', output: 'log.txt') {
 		ant.env key: 'GRAILS_HOME', value: grailsHome
 		ant.arg value: env
 		ant.arg value: action
