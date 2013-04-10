@@ -41,16 +41,11 @@ grails.plugins.springsecurity.cas.serverUrlPrefix = 'https://authtest.it.usf.edu
 grails.plugins.springsecurity.cas.serviceUrl = 'http://localhost:8080/${appName}/j_spring_cas_security_check'
 {code}
 
-h4. Moving to Production
+h4. Moving to a Test or Production server
 
-When you have tested your app and are ready to move into production, update the following configuration items:
+Once you have tested your app on localhost and are ready to run `grails war`, open a support ticket in [ServiceNow|http://usffl.service-now.com] and include the following information:
 
-{code}
-grails.plugins.springsecurity.cas.serverUrlPrefix = 'https://webauth.usf.edu'
-grails.plugins.springsecurity.cas.serviceUrl = '${productionURL}/j_spring_cas_security_check'
-{code}
-
-Then, please send the following information to *cims-tech-core@mail.usf.edu* :
+* Short Description: _SSO Project: Application Name_
 * Your Name
 * Your Email address
 * Office phone number

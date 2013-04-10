@@ -1,8 +1,12 @@
+grails.servlet.version = "2.5" // Change depending on target container compliance (2.5 or 3.0)
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
-grails.project.war.file = "target/${appName}.war"
+grails.project.target.level = 1.6
+grails.project.source.level = 1.6
 grails.plugin.location.'spring-security-cas-usf' = "../../.."
+grails.project.war.file = "target/${appName}.war"
+
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
     inherits("global") {
@@ -10,15 +14,20 @@ grails.project.dependency.resolution = {
         // excludes 'ehcache'
     }
     log "warn" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
+    checksums true // Whether to verify checksums on resolve
+
     repositories {
+        inherits true // Whether to inherit repository definitions from plugins
         grailsPlugins()
         grailsHome()
         grailsCentral()
+        mavenCentral()
+        mavenLocal()
+        mavenRepo "http://maven.restlet.org"
 
-        // uncomment the below to enable remote dependency resolution
-        // from public Maven repositories
-        //mavenLocal()
+        // uncomment these to enable remote dependency resolution from public Maven repositories
         //mavenCentral()
+        //mavenLocal()
         //mavenRepo "http://snapshots.repository.codehaus.org"
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
@@ -26,7 +35,13 @@ grails.project.dependency.resolution = {
     }
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
+    }
 
-        // runtime 'mysql:mysql-connector-java:5.1.13'
+    plugins {
+        compile ":hibernate:$grailsVersion"
+        compile ":spring-security-core:1.2.7.3"
+        build ":tomcat:$grailsVersion"
+
+        provided ":webxml:1.4.1"
     }
 }
