@@ -15,6 +15,7 @@ grails.project.dependency.resolution = {
     }
     log "warn" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
     checksums true // Whether to verify checksums on resolve
+    legacyResolve true
 
     repositories {
         inherits true // Whether to inherit repository definitions from plugins
@@ -38,7 +39,6 @@ grails.project.dependency.resolution = {
     }
 
     plugins {
-        compile ":hibernate:$grailsVersion"
         compile ":spring-security-core:1.2.7.3"
         build ":tomcat:$grailsVersion"
 
