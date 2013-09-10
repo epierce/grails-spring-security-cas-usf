@@ -2,5 +2,6 @@
 target/*
 plugin.xml
 testapps.config.groovy
-test/projects/UsfCasPluginTest/target/*
+target/*
 *.zip
+test/projects/UsfCasPluginTest/target/*

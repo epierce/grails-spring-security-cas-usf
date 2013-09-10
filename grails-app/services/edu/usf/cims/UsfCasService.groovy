@@ -5,8 +5,8 @@ import org.springframework.web.context.request.RequestContextHolder
 
 class UsfCasService extends SpringSecurityService {
 
-    static transactional = false
-	static scope = "singleton"
+  static transactional = false
+  static scope = "singleton"
 	
 	def getUsername(){
 		super.authentication.name
