@@ -1,32 +1,29 @@
+grails.servlet.version = "3.0"
 grails.project.class.dir = 'target/classes'
 grails.project.test.class.dir = 'target/test-classes'
 grails.project.test.reports.dir	= 'target/test-reports'
-
-//Add JIRA Studio as a plugin repository
-grails.plugin.repos.discovery.usfRepository = "https://bullpen.jira.com/svn/GRAILSPLUGIN"
-grails.plugin.repos.distribution.usfRepository = "https://bullpen.jira.com/svn/GRAILSPLUGIN"
+grails.project.target.level = 1.6
+grails.project.source.level = 1.6
 
 grails.project.dependency.resolution = {
 	inherits('global') {
 		excludes 'commons-codec' // Grails ships with 1.3, need 1.4
 	}
+  legacyResolve true
+  checksums true
+	log 'error'
 
-	log 'warn'
+  repositories {
+      inherits true // Whether to inherit repository definitions from plugins
 
-	repositories {        
-		grailsPlugins()
-		grailsHome()
-		grailsCentral()
-
-		ebr() // SpringSource  http://www.springsource.com/repository
-		
-		mavenLocal()
-		mavenCentral()
-		mavenRepo "http://snapshots.repository.codehaus.org"
-		mavenRepo "http://repository.codehaus.org"
-		mavenRepo "http://download.java.net/maven/2/"
-		mavenRepo "http://repository.jboss.com/maven2/"
-	}
+      grailsPlugins()
+      grailsHome()
+      grailsCentral()
+      mavenLocal()
+      mavenCentral()
+      mavenRepo "http://download.java.net/maven/2"
+      mavenRepo "http://developer.ja-sig.org/maven2"
+  }
 
 	dependencies {
 		compile('org.springframework.security:org.springframework.security.cas:3.0.4.RELEASE') {
@@ -42,4 +39,8 @@ grails.project.dependency.resolution = {
 			transitive = false
 		}
 	}
+
+  plugins {
+    compile ":spring-security-core:1.2.7.3"
+    }
 }

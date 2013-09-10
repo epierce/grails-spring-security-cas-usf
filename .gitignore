@@ -1,5 +1,6 @@
-/grails-spring-security-cas-*.zip
-/*.log
-/target
-/plugin.xml
-/testapps.config.groovy
+*.log
+target/*
+plugin.xml
+testapps.config.groovy
+test/projects/UsfCasPluginTest/target/*
+*.zip
