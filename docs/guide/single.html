@@ -132,9 +132,11 @@ It depends on the <a href="http://grails.org/plugin/spring-security-core" target
 <blockquote class="note">
 This guide assumes that you are using authtest.it.usf.edu for development and testing and webauth.usf.edu for production
 </blockquote><p class="paragraph"/><a href="http://www.jasig.org/cas" target="blank">CAS</a> is a popular single sign-on implementation. It's open source(Apache license) and is easy to get started with but is also highly configurable. In addition it has clients written in Java, .Net, PHP, Perl, and other languages.<p class="paragraph"/>There isn't much that you need to do in your application to be a CAS client. Just install this plugin, run the configuration script, and modify any of the default values you want in Config.groovy. These are described in detail in <a href="../guide/single.html#configuration" class="guide">configuration</a> but in most cases, you won't need to change anything during development.<p class="paragraph"/><h4>Installation</h4>
-Download the latest version of the plugin zip file from https://bullpen.jira.com/wiki/display/USFGRAILSCAS/spring-security-usf-cas+Grail+Plugin and drop it into the /lib directory of your Grails project.
-<div class="code"><pre>grails install&#45;plugin spring&#45;security&#45;core
-grails install&#45;plugin grails&#45;spring&#45;security&#45;usf&#45;cas</pre></div><p class="paragraph"/><h4>grails usf-cas-config</h4>
+Download the latest version of the plugin zip file from <a href="https://github.com/epierce/grails-spring-security-cas-usf/raw/master/spring-security-cas-usf-1.3.0.zip" target="blank">GitHub</a>, drop it into the <code>lib</code> directory of your Grails project and update <code>grails-app/conf/BuildConfig.groovy</code>:
+<div class="code"><pre>plugins &#123;
+        compile <span class="java&#45;quote<a href="spring&#45;security&#45;core:1.2.7.3"</span>">></a>
+        compile <span class="java&#45;quote<a href="spring&#45;security&#45;cas&#45;usf:1.3.0"</span>">></a>
+  &#125;</pre></div><p class="paragraph"/><h4>grails usf-cas-config</h4>
 After you have installed the plugin, run this command to add the necessary configuration options:<p class="paragraph"/><div class="code"><pre>grails usf&#45;cas&#45;config</pre></div><p class="paragraph"/>The following lines will be added to your Config.groovy:<p class="paragraph"/><div class="code"><pre>grails.plugins.springsecurity.userLookup.userDomainClassName = 'edu.usf.cims.UsfCasUser'
 grails.plugins.springsecurity.cas.active = <span class="java&#45;keyword">true</span>
 grails.plugins.springsecurity.cas.sendRenew = <span class="java&#45;keyword">false</span>
@@ -158,7 +160,7 @@ grails.plugins.springsecurity.cas.serviceUrl = 'http://localhost:8080/$&#123;app
 <li>Office phone number</li>
 <li>Application Name</li>
 <li>Short description of the service</li>
-<li>Value used for grails.plugins.springsecurity.cas.serviceUrl</li>
+<li>Value used for <code>grails.plugins.springsecurity.cas.serviceUrl</code></li>
 <li>List of attributes that need to be released</li>
 </ul><p class="paragraph"/>
 
