@@ -7,10 +7,12 @@ This guide assumes that you are using authtest.it.usf.edu for development and te
 There isn't much that you need to do in your application to be a CAS client. Just install this plugin, run the configuration script, and modify any of the default values you want in Config.groovy. These are described in detail in [configuration|guide:configuration] but in most cases, you won't need to change anything during development.
 
 h4. Installation
-Download the latest version of the plugin zip file from https://bullpen.jira.com/wiki/display/USFGRAILSCAS/spring-security-usf-cas+Grail+Plugin and drop it into the /lib directory of your Grails project.
+Download the latest version of the plugin zip file from [GitHub|https://github.com/epierce/grails-spring-security-cas-usf/raw/master/spring-security-cas-usf-1.3.0.zip], drop it into the @lib@ directory of your Grails project and update @grails-app/conf/BuildConfig.groovy@:
 {code}
-grails install-plugin spring-security-core
-grails install-plugin grails-spring-security-usf-cas
+  plugins {
+        compile ":spring-security-core:1.2.7.3"
+        compile ":spring-security-cas-usf:1.3.0"
+  }
 {code}
 
 h4. grails usf-cas-config
@@ -51,9 +53,5 @@ Once you have tested your app on localhost and are ready to run `grails war`, op
 * Office phone number
 * Application Name
 * Short description of the service
-* Value used for grails.plugins.springsecurity.cas.serviceUrl
+* Value used for @grails.plugins.springsecurity.cas.serviceUrl@
 * List of attributes that need to be released
-
-
-
-
