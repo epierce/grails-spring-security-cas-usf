@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>2 Usage 1.3.0</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
+    <script type="text/javascript">
+function addJsClass() {
+    var classes = document.body.className.split(" ");
+    classes.push("js");
+    document.body.className = classes.join(" ");
+}
+    </script>
+</head>
+
+<body class="body" onload="addJsClass();">
+<div id="navigation">
+    <ul>
+        <li>
+            <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                <a href="../guide/index.html" class="button">Table of contents</a>
+
+                <div id="nav-summary-childs" style="display:none;">
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/introduction.html"><strong>1</strong><span>Introduction</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/usage.html"><strong>2</strong><span>Usage</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/configuration.html"><strong>3</strong><span>Configuration</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/helpers.html"><strong>4</strong><span>Helper Classes</span></a>
+                    </div>
+                    
+                </div>
+            </div>
+        </li>
+        <li class="separator selected">
+            <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+        </li>
+    </ul>
+</div>
+<div id="header">
+    <div class="images clearfix">
+        
+        
+    </div>
+    <p>USF-specific changes to the CAS Spring Security plugin.</p>
+</div>
+
+
+<table id="colset" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td id="col1">
+            <div id="main" class="corner-all">
+
+                
+                    <div class="toc-item prev-left"><a href="../guide/introduction.html">&lt;&lt; <strong>1</strong><span>Introduction</span></a></div>
+                
+
+                <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
+
+                
+                    <div class="toc-item next-right"><a href="../guide/configuration.html"><strong>3</strong><span>Configuration</span> >></a></div>
+                
+
+
+                <div class="project">
+                    <h1>2 Usage - Reference Documentation</h1>
+
+                    <p><strong>Authors:</strong> Eric Pierce</p>
+
+                    <p><strong>Version:</strong> 1.3.0</p>
+
+                    
+                </div>
+
+                
+
+                
+
+<h1 id="usage">2 Usage</h1>
+<blockquote class="note">
+This guide assumes that you are using authtest.it.usf.edu for development and testing and webauth.usf.edu for production
+</blockquote><p class="paragraph"/><a href="http://www.jasig.org/cas" target="blank">CAS</a> is a popular single sign-on implementation. It's open source(Apache license) and is easy to get started with but is also highly configurable. In addition it has clients written in Java, .Net, PHP, Perl, and other languages.<p class="paragraph"/>There isn't much that you need to do in your application to be a CAS client. Just install this plugin, run the configuration script, and modify any of the default values you want in Config.groovy. These are described in detail in <a href="../guide/single.html#configuration" class="guide">configuration</a> but in most cases, you won't need to change anything during development.<p class="paragraph"/><h4>Installation</h4>
+Download the latest version of the plugin zip file from https://bullpen.jira.com/wiki/display/USFGRAILSCAS/spring-security-usf-cas+Grail+Plugin and drop it into the /lib directory of your Grails project.
+<div class="code"><pre>grails install&#45;plugin spring&#45;security&#45;core
+grails install&#45;plugin grails&#45;spring&#45;security&#45;usf&#45;cas</pre></div><p class="paragraph"/><h4>grails usf-cas-config</h4>
+After you have installed the plugin, run this command to add the necessary configuration options:<p class="paragraph"/><div class="code"><pre>grails usf&#45;cas&#45;config</pre></div><p class="paragraph"/>The following lines will be added to your Config.groovy:<p class="paragraph"/><div class="code"><pre>grails.plugins.springsecurity.userLookup.userDomainClassName = 'edu.usf.cims.UsfCasUser'
+grails.plugins.springsecurity.cas.active = <span class="java&#45;keyword">true</span>
+grails.plugins.springsecurity.cas.sendRenew = <span class="java&#45;keyword">false</span>
+grails.plugins.springsecurity.cas.key = 'a5e3051a58a742948f80a6ff83d51ac' //unique value <span class="java&#45;keyword">for</span> each app
+grails.plugins.springsecurity.cas.artifactParameter = 'ticket'
+grails.plugins.springsecurity.cas.serviceParameter = 'service'
+grails.plugins.springsecurity.cas.filterProcessesUrl = '/j_spring_cas_security_check'
+grails.plugins.springsecurity.cas.proxyCallbackUrl = 'http://localhost:8080/$&#123;appName&#125;/secure/receptor' 
+grails.plugins.springsecurity.cas.proxyReceptorUrl = '/secure/receptor'
+grails.plugins.springsecurity.cas.useSingleSignout = <span class="java&#45;keyword">false</span>
+grails.plugins.springsecurity.cas.driftTolerance = 120000
+grails.plugins.springsecurity.cas.loginUri = '/login'
+grails.plugins.springsecurity.cas.useSamlValidator = <span class="java&#45;keyword">true</span>
+grails.plugins.springsecurity.cas.authorityAttribute = 'eduPersonEntitlement'
+grails.plugins.springsecurity.cas.serverUrlPrefix = 'https://authtest.it.usf.edu'
+grails.plugins.springsecurity.cas.serviceUrl = 'http://localhost:8080/$&#123;appName&#125;/j_spring_cas_security_check'</pre></div><p class="paragraph"/><h4>Moving to a Test or Production server</h4><p class="paragraph"/>Once you have tested your app on localhost and are ready to run `grails war`, open a support ticket in <a href="http://usffl.service-now.com" target="blank">ServiceNow</a> and include the following information:
+<ul class="star">
+<li>Short Description:  <em class="italic">SSO Project: Application Name</em> </li>
+<li>Your Name</li>
+<li>Your Email address</li>
+<li>Office phone number</li>
+<li>Application Name</li>
+<li>Short description of the service</li>
+<li>Value used for grails.plugins.springsecurity.cas.serviceUrl</li>
+<li>List of attributes that need to be released</li>
+</ul><p class="paragraph"/>
+
+
+                <div style="clear:both;margin-top:15px;"></div>
+                
+                    <div class="toc-item prev-left"><a href="../guide/introduction.html">&lt;&lt; <strong>1</strong><span>Introduction</span></a></div>
+                
+                    <div class="toc-item next-right"><a href="../guide/configuration.html"><strong>3</strong><span>Configuration</span> >></a></div>
+                
+                <div style="clear:both"></div>
+            </div>
+        </td>
+        <td id="col2">
+            <div class="local clearfix">
+                <div class="local-title">
+                    <a href="../guide/index.html" target="mainFrame">Quick Reference</a>
+                    <span class="toggle">(<a href="#" onclick="localToggle(); return false;">hide</a>)</span>
+                </div>
+                <div class="menu">
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Scripts</h1><div class="menu-sub">
+                        
+                            
+                            <div class="menu-item"><a href="../ref/Scripts/usf-cas-config.html">usf-cas-config</a>
+                            </div>
+                            
+                            </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Tags</h1><div class="menu-sub">
+                        
+                            
+                            <div class="menu-item"><a href="../ref/Tags/attribute.html">attribute</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Tags/eppa.html">eppa</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Tags/ifEPPA.html">ifEPPA</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Tags/ifLoggedIn.html">ifLoggedIn</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Tags/ifNotLoggedIn.html">ifNotLoggedIn</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Tags/username.html">username</a>
+                            </div>
+                            
+                            </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div id="footer">
+    
+    
+</div>
+
+<script type="text/javascript" src="../js/docs.js"></script>
+
+</body>
+</html>

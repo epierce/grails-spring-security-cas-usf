@@ -1,0 +1,369 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <title>USF CAS Spring Security plugin. 1.3.0</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8" />
+        <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8" />
+    <script type="text/javascript">
+function addJsClass(el) {
+    var classes = document.body.className.split(" ");
+    classes.push("js");
+    document.body.className = classes.join(" ");
+}
+    </script>
+    </head>
+
+    <body class="body" onload="addJsClass();">
+        <div id="navigation">
+            <ul>
+                <li>
+                    <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                        <a href="../guide/index.html" class="button">Table of contents</a>
+                        <div id="nav-summary-childs" style="display:none;">
+                            
+                            <div class="toc-item" style="margin-left:0"><a href="#introduction"><strong>1</strong><span>Introduction</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:0"><a href="#usage"><strong>2</strong><span>Usage</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:0"><a href="#configuration"><strong>3</strong><span>Configuration</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:0"><a href="#helpers"><strong>4</strong><span>Helper Classes</span></a></div>
+                            
+                        </div>
+                    </div>
+                </li>
+                <li class="separator selected">
+                    <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+                </li>
+            </ul>
+        </div>
+        <div id="header">
+            <div class="images clearfix">
+                
+                
+            </div>
+            <p>USF-specific changes to the CAS Spring Security plugin.</p>
+        </div>
+
+
+        <table id="colset" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td id="col1">
+                    <div id="main" class="corner-all">
+
+                        <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
+
+                        <div class="project">
+                            <h1>USF CAS Spring Security plugin. - Reference Documentation</h1>
+                            <p><strong>Authors:</strong> Eric Pierce</p>
+                            <p><strong>Version:</strong> 1.3.0</p>
+                            
+                        </div>
+
+                        
+                        <div id="table-of-content">
+                            <h2>Table of Contents</h2>
+                            
+                            <div class="toc-item" style="margin-left:0px"><a href="#introduction"><strong>1</strong><span>Introduction</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:10px"><a href="#changes"><strong>1.1</strong><span>Change Log</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:0px"><a href="#usage"><strong>2</strong><span>Usage</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:0px"><a href="#configuration"><strong>3</strong><span>Configuration</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:0px"><a href="#helpers"><strong>4</strong><span>Helper Classes</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:10px"><a href="#service"><strong>4.1</strong><span>UsfCasService</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:10px"><a href="#taglib"><strong>4.2</strong><span>CASTagLib</span></a></div>
+                            
+                            <div style="clear:both" ></div>
+                        </div>
+                        
+                        
+
+<h1 id="introduction">1 Introduction</h1>
+The Spring-Security-USF plugin builds on the <a href="http://grails.org/plugin/spring-security-cas" target="blank">spring-security-cas plugin</a>.
+It depends on the <a href="http://grails.org/plugin/spring-security-core" target="blank">Spring Security Core plugin</a>.<p class="paragraph"/>Additional features beyond the standard CAS plugin include
+<ul class="star">
+<li>Attribute release through  <a href="https://wiki.jasig.org/display/CASUM/SAML+1.1" target="blank">SAML1.1</a></li>
+<li>USF-specific configuration script</li>
+<li>Spring Security service  - UsfCasService</li>
+<li>&#60;cas:&#62; tag library</li>
+</ul><p class="paragraph"/>Once you have configured a CAS server and have configured your Grails application(s) as clients, you can authenticate to any application that is a client of the CAS server and be automatically authenticated to all other clients.<p class="paragraph"/>
+
+
+<h2 id="changes">1.1 Change Log</h2>
+<ul class="star">
+<li>Version 1.2.1</li>
+<ul class="star">
+<li>released April 10, 2013</li>
+</ul>
+<li>Version 1.2.0</li>
+<ul class="star">
+<li>released March 12, 2012</li>
+</ul>
+<li>Version 1.1.0</li>
+<ul class="star">
+<li>released August 17, 2011</li>
+</ul>
+<li>Version 1.0.2</li>
+<ul class="star">
+<li>released February 12, 2011</li>
+</ul>
+<li>Version 1.0.1</li>
+<ul class="star">
+<li>released September 1, 2010</li>
+</ul>
+<li>Version 1.0</li>
+<ul class="star">
+<li>released July 27, 2010</li>
+</ul>
+<li>Version 0.1</li>
+<ul class="star">
+<li>released June 18, 2010</li>
+</ul></ul><p class="paragraph"/>
+
+
+<h1 id="usage">2 Usage</h1>
+<blockquote class="note">
+This guide assumes that you are using authtest.it.usf.edu for development and testing and webauth.usf.edu for production
+</blockquote><p class="paragraph"/><a href="http://www.jasig.org/cas" target="blank">CAS</a> is a popular single sign-on implementation. It's open source(Apache license) and is easy to get started with but is also highly configurable. In addition it has clients written in Java, .Net, PHP, Perl, and other languages.<p class="paragraph"/>There isn't much that you need to do in your application to be a CAS client. Just install this plugin, run the configuration script, and modify any of the default values you want in Config.groovy. These are described in detail in <a href="../guide/single.html#configuration" class="guide">configuration</a> but in most cases, you won't need to change anything during development.<p class="paragraph"/><h4>Installation</h4>
+Download the latest version of the plugin zip file from https://bullpen.jira.com/wiki/display/USFGRAILSCAS/spring-security-usf-cas+Grail+Plugin and drop it into the /lib directory of your Grails project.
+<div class="code"><pre>grails install&#45;plugin spring&#45;security&#45;core
+grails install&#45;plugin grails&#45;spring&#45;security&#45;usf&#45;cas</pre></div><p class="paragraph"/><h4>grails usf-cas-config</h4>
+After you have installed the plugin, run this command to add the necessary configuration options:<p class="paragraph"/><div class="code"><pre>grails usf&#45;cas&#45;config</pre></div><p class="paragraph"/>The following lines will be added to your Config.groovy:<p class="paragraph"/><div class="code"><pre>grails.plugins.springsecurity.userLookup.userDomainClassName = 'edu.usf.cims.UsfCasUser'
+grails.plugins.springsecurity.cas.active = <span class="java&#45;keyword">true</span>
+grails.plugins.springsecurity.cas.sendRenew = <span class="java&#45;keyword">false</span>
+grails.plugins.springsecurity.cas.key = 'a5e3051a58a742948f80a6ff83d51ac' //unique value <span class="java&#45;keyword">for</span> each app
+grails.plugins.springsecurity.cas.artifactParameter = 'ticket'
+grails.plugins.springsecurity.cas.serviceParameter = 'service'
+grails.plugins.springsecurity.cas.filterProcessesUrl = '/j_spring_cas_security_check'
+grails.plugins.springsecurity.cas.proxyCallbackUrl = 'http://localhost:8080/$&#123;appName&#125;/secure/receptor' 
+grails.plugins.springsecurity.cas.proxyReceptorUrl = '/secure/receptor'
+grails.plugins.springsecurity.cas.useSingleSignout = <span class="java&#45;keyword">false</span>
+grails.plugins.springsecurity.cas.driftTolerance = 120000
+grails.plugins.springsecurity.cas.loginUri = '/login'
+grails.plugins.springsecurity.cas.useSamlValidator = <span class="java&#45;keyword">true</span>
+grails.plugins.springsecurity.cas.authorityAttribute = 'eduPersonEntitlement'
+grails.plugins.springsecurity.cas.serverUrlPrefix = 'https://authtest.it.usf.edu'
+grails.plugins.springsecurity.cas.serviceUrl = 'http://localhost:8080/$&#123;appName&#125;/j_spring_cas_security_check'</pre></div><p class="paragraph"/><h4>Moving to a Test or Production server</h4><p class="paragraph"/>Once you have tested your app on localhost and are ready to run `grails war`, open a support ticket in <a href="http://usffl.service-now.com" target="blank">ServiceNow</a> and include the following information:
+<ul class="star">
+<li>Short Description:  <em class="italic">SSO Project: Application Name</em> </li>
+<li>Your Name</li>
+<li>Your Email address</li>
+<li>Office phone number</li>
+<li>Application Name</li>
+<li>Short description of the service</li>
+<li>Value used for grails.plugins.springsecurity.cas.serviceUrl</li>
+<li>List of attributes that need to be released</li>
+</ul><p class="paragraph"/>
+
+
+<h1 id="configuration">3 Configuration</h1>
+There are a few configuration options for the CAS plugin.<p class="paragraph"/><blockquote class="note">
+All of these property overrides must be specified in <code>grails-app/conf/Config.groovy</code> using the <code>grails.plugins.springsecurity</code> prefix, for example
+<div class="code"><pre>grails.plugins.springsecurity.cas.serverUrlPrefix =
+     'https://authtest.it.usf.edu'</pre></div>
+</blockquote><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Default</strong></th><th><strong class="bold">Meaning</strong></th></tr><tr class="table-odd"><td>userLookup.userDomainClassName</td><td><code>edu.usf.cims.UsfCasUser</code></td><td>SpringSecurity User Class</td></tr><tr class="table-even"><td>cas.active</td><td><code>true</code></td><td>whether the plugin is enabled or not (e.g. to disable per-environment)</td></tr><tr class="table-odd"><td>cas.serverUrlPrefix</td><td><code>https://authtest.it.usf.edu</code></td><td>the 'root' of all CAS server URLs</td></tr><tr class="table-even"><td>cas.loginUri</td><td><code>/login</code></td><td>the login URI, relative to <code>cas.serverUrlPrefix</code>, e.g. <code>/login</code></td></tr><tr class="table-odd"><td>cas.sendRenew</td><td><code>false</code></td><td>if true, ticket validation will only succeed if it was issued from a login form, but will fail if it was issued from a single sign-on session. Analagous to <code>IS_AUTHENTICATED_FULLY</code> in Spring Security</td></tr><tr class="table-even"><td>cas.serviceUrl</td><td><code>http://localhost:8080/${appName}/j_spring_cas_security_check</code></td><td>the local application login URL</td></tr><tr class="table-odd"><td>cas.key</td><td>random value</td><td>used by <code>CasAuthenticationProvider</code> to identify tokens it previously authenticated.  Generated automatically by <code>grails usf-cas-config</code></td></tr><tr class="table-even"><td>cas.artifactParameter</td><td><code>ticket</code></td><td>the ticket login url parameter</td></tr><tr class="table-odd"><td>cas.serviceParameter</td><td><code>service</code></td><td>the service login url parameter</td></tr><tr class="table-even"><td>cas.filterProcessesUrl</td><td><code>/j_spring_cas_security_check</code></td><td>the URL that the filter intercepts for login</td></tr><tr class="table-odd"><td>cas.proxyCallbackUrl</td><td><code>http://localhost:8080/${appName}/secure/receptor</code></td><td>proxy callback url</td></tr><tr class="table-even"><td>cas.proxyReceptorUrl</td><td><code>/secure/receptor</code></td><td>proxy receptor url</td></tr><tr class="table-odd"><td>cas.useSingleSignout</td><td><code>false</code></td><td>if <code>true</code> a <code>org.jasig.cas.client.session.SingleSignOutFilter</code> is registered in web.xml</td></tr><tr class="table-even"><td>cas.useSamlValidator</td><td><code>true</code></td><td>Use SAML 1.1 for attribute release</td></tr><tr class="table-odd"><td>cas.driftTolerance</td><td><code>12000</code></td><td>SAML tokens are very time sensitive.  Handle 'time drift' between client and server. (ms)</td></tr><tr class="table-even"><td>cas.authorityAttribute</td><td><code>eduPersonEntitlement</code></td><td>Read attribute for SpringSecurity Roles</td></tr></table><p class="paragraph"/>grails.plugins.springsecurity.userLookup.userDomainClassName = 'edu.usf.cims.UsfCasUser'<p class="paragraph"/>
+
+
+<h1 id="helpers">4 Helper Classes</h1>
+Use the plugin helper classes in your application to avoid dealing with some lower-level details of Spring Security.
+
+
+<h2 id="service">4.1 UsfCasService</h2>
+<h4>getUsername()</h4>
+Retrieves the username passed during authentication (NetID)<p class="paragraph"/>Example:<p class="paragraph"/><div class="code"><pre>class SomeController &#123;
+   def usfCasService<p class="paragraph"/>   def someAction = &#123;
+      def user = usfCasService.username
+      &#8230;
+   &#125;
+&#125;</pre></div><p class="paragraph"/><h4>getEppa()</h4>
+Retrieves the EduPersonPrimaryAffiliation for the currently logged in user<p class="paragraph"/>Example:<p class="paragraph"/><div class="code"><pre>class SomeController &#123;
+   def usfCasService<p class="paragraph"/>   def someAction = &#123;
+      def primaryAffil = usfCasService.eppa
+      &#8230;
+   &#125;
+&#125;</pre></div><p class="paragraph"/><h4>getAttributes()</h4>
+Retrieves a map of the attributes passed by CAS for the currently logged in user<p class="paragraph"/>Example:<p class="paragraph"/><div class="code"><pre>class SomeController &#123;
+   def usfCasService<p class="paragraph"/>   def someAction = &#123;
+      def attrMap = usfCasService.attributes<p class="paragraph"/>      def commonName = attributes.CommonName
+      &#8230;
+   &#125;
+&#125;</pre></div><p class="paragraph"/><blockquote class="note">
+<code>edu.usf.cims.UsfCasService</code> inherits from <code>grails.plugins.springsecurity.SpringSecurityService</code>, so the rest of this
+document was copied from spring-security-core's docs
+</blockquote>
+<code>edu.usf.cims.UsfCasService</code> provides security utility functions. It is a regular Grails service, so you use dependency injection to inject it into a controller, service, taglib, and so on:<p class="paragraph"/><div class="code"><pre>def usfCasService</pre></div><p class="paragraph"/><h4>getCurrentUser()</h4>
+Retrieves a domain class instance for the currently authenticated user. During authentication a user/person domain class instance is loaded to get the user's password, roles, etc. and the id of the instance is saved. This method uses the id and the domain class to re-load the instance.<p class="paragraph"/>Example:<p class="paragraph"/><div class="code"><pre>class SomeController &#123;<p class="paragraph"/>   def usfCasService<p class="paragraph"/>   def someAction = &#123;
+      def user = usfCasService.currentUser
+      &#8230;
+   &#125;
+&#125;</pre></div><p class="paragraph"/><h4>isLoggedIn()</h4>
+Checks whether there is a currently logged-in user.<p class="paragraph"/>Example:<p class="paragraph"/><div class="code"><pre>class SomeController &#123;<p class="paragraph"/>   def usfCasService<p class="paragraph"/>   def someAction = &#123;
+      <span class="java&#45;keyword">if</span> (usfCasService.isLoggedIn()) &#123;
+         &#8230;
+      &#125;
+      <span class="java&#45;keyword">else</span> &#123;
+         &#8230;
+      &#125;
+   &#125;
+&#125;</pre></div><p class="paragraph"/><h4>getAuthentication()</h4><p class="paragraph"/>Retrieves the current user's <a href="http://static.springsource.org/spring-security/site/docs/3.0.x/apidocs/org/springframework/security/core/Authentication.html" target="blank">Authentication</a>. If authenticated in, this will typically be a <a href="http://static.springsource.org/spring-security/site/docs/3.0.x/apidocs/org/springframework/security/authentication/UsernamePasswordAuthenticationToken.html" target="blank">UsernamePasswordAuthenticationToken</a>.<p class="paragraph"/>If not authenticated and the <a href="http://static.springsource.org/spring-security/site/docs/3.0.x/apidocs/org/springframework/security/web/authentication/AnonymousAuthenticationFilter.html" target="blank">AnonymousAuthenticationFilter</a> is active (true by default) then the anonymous user's authentication will be returned (<a href="http://static.springsource.org/spring-security/site/docs/3.0.x/apidocs/org/springframework/security/authentication/AnonymousAuthenticationToken.html" target="blank">AnonymousAuthenticationToken</a> with username 'anonymousUser' unless overridden).<p class="paragraph"/>
+Example:<p class="paragraph"/><div class="code"><pre>class SomeController &#123;<p class="paragraph"/>   def usfCasService<p class="paragraph"/>   def someAction = &#123;
+      def auth = usfCasService.authentication
+      <span class="java&#45;object">String</span> username = auth.username
+      def authorities = auth.authorities // a Collection of GrantedAuthority
+      <span class="java&#45;object">boolean</span> authenticated = auth.authenticated
+      &#8230;
+   &#125;
+&#125;</pre></div><p class="paragraph"/><h4>getPrincipal()</h4><p class="paragraph"/>Retrieves the currently logged in user's <code>Principal</code>. If authenticated, the principal will be a <code>org.codehaus.groovy.grails.plugins.springsecurity.GrailsUser</code>, unless you  have created a custom <code>UserDetailsService</code>, in which case it will be whatever implementation of <a href="http://static.springsource.org/spring-security/site/docs/3.0.x/apidocs/org/springframework/security/core/userdetails/UserDetails.html" target="blank">UserDetails</a> you use there.<p class="paragraph"/>If not authenticated and the <a href="http://static.springsource.org/spring-security/site/docs/3.0.x/apidocs/org/springframework/security/web/authentication/AnonymousAuthenticationFilter.html" target="blank">AnonymousAuthenticationFilter</a> is active (true by default) then the anonymous user's name will be returned ('anonymousUser' unless overridden).<p class="paragraph"/>Example:<p class="paragraph"/><div class="code"><pre>class SomeController &#123;<p class="paragraph"/>   def usfCasService<p class="paragraph"/>   def someAction = &#123;
+      def principal = usfCasService.principal
+      <span class="java&#45;object">String</span> username = principal.username
+      def authorities = principal.authorities // a Collection of GrantedAuthority
+      <span class="java&#45;object">boolean</span> enabled = principal.enabled
+      &#8230;
+   &#125;
+&#125;</pre></div><p class="paragraph"/>
+<h4>updateRole()</h4>
+Updates a role and, if you use <code>Requestmap</code> instances to secure URLs, updates the role name in all affected <code>Requestmap</code> definitions if the name was changed.<p class="paragraph"/>Example:<p class="paragraph"/><div class="code"><pre>class RoleController &#123;<p class="paragraph"/>   def usfCasService<p class="paragraph"/>   def update = &#123;
+      def roleInstance = Role.get(params.id)
+      <span class="java&#45;keyword">if</span> (!usfCasService.updateRole(roleInstance, params)) &#123;
+         render view: 'edit', model: &#91;roleInstance: roleInstance&#93;
+         <span class="java&#45;keyword">return</span>
+      &#125;<p class="paragraph"/>      flash.message = <span class="java&#45;quote">"The role was updated"</span>
+      redirect action: show, id: roleInstance.id
+   &#125;
+&#125;</pre></div><p class="paragraph"/><h4>deleteRole()</h4>
+Deletes a role and, if you use <code>Requestmap</code> instances to secure URLs, removes the role from all affected <code>Requestmap</code> definitions. If a <code>Requestmap</code>'s config attribute is only the role name (for example, "/foo/bar/&#42;&#42;=ROLE_FOO"), it is deleted.<p class="paragraph"/>Example:<p class="paragraph"/><div class="code"><pre>class RoleController &#123;<p class="paragraph"/>   def usfCasService<p class="paragraph"/>   def delete = &#123;
+      def roleInstance = Role.get(params.id)
+      <span class="java&#45;keyword">try</span> &#123;
+         usfCasService.deleteRole (roleInstance
+         flash.message = <span class="java&#45;quote">"The role was deleted"</span>
+         redirect action: list
+      &#125;
+      <span class="java&#45;keyword">catch</span> (DataIntegrityViolationException e) &#123;
+         flash.message = <span class="java&#45;quote">"Unable to delete the role"</span>
+         redirect action: show, id: params.id
+      &#125;
+   &#125;
+&#125;</pre></div><p class="paragraph"/><h4>clearCachedRequestmaps()</h4>
+Flushes the Requestmaps cache and triggers a complete reload. If you use <code>Requestmap</code> instances to secure URLs, the plugin loads and caches all <code>Requestmap</code> instances as a performance optimization. This action saves database activity because the requestmaps are checked for each request. Do not allow the cache to become stale. When you create, edit or delete a <code>Requestmap</code>, flush the cache. Both <code>updateRole()</code> and <code>deleteRole()</code> call clearCachedRequestmaps()for you. Call this method when you create a new <code>Requestmap</code> or do other <code>Requestmap</code> work that affects the cache.<p class="paragraph"/>Example:<p class="paragraph"/><div class="code"><pre>class RequestmapController &#123;<p class="paragraph"/>   def usfCasService<p class="paragraph"/>   def save = &#123;
+      def requestmapInstance = <span class="java&#45;keyword">new</span> Requestmap(params)
+      <span class="java&#45;keyword">if</span> (!requestmapInstance.save(flush: <span class="java&#45;keyword">true</span>)) &#123;
+         render view: 'create', model: &#91;requestmapInstance: requestmapInstance&#93;
+         <span class="java&#45;keyword">return</span>
+      &#125;<p class="paragraph"/>      usfCasService.clearCachedRequestmaps()
+      flash.message = <span class="java&#45;quote">"Requestmap created"</span>
+      redirect action: show, id: requestmapInstance.id
+   &#125;
+&#125;</pre></div><p class="paragraph"/><h4>reauthenticate()</h4>
+Rebuilds an <a href="http://static.springsource.org/spring-security/site/docs/3.0.x/apidocs/org/springframework/security/core/Authentication.html" target="blank">Authentication</a> for the given username and registers it in the security context. You typically use this method after updating a user's authorities or other data that is cached in the <code>Authentication</code> or <code>Principal</code>. It also removes the user from the user cache to force a refresh at next login.<p class="paragraph"/>Example:<p class="paragraph"/><div class="code"><pre>class UserController &#123;<p class="paragraph"/>   def usfCasService<p class="paragraph"/>   def update = &#123;
+      def userInstance = User.get(params.id)<p class="paragraph"/>      params.salt = person.salt
+      <span class="java&#45;keyword">if</span> (params.password) &#123;
+         params.password = usfCasService.encodePassword(params.password, salt)
+         def salt = &#8230; // e.g. randomly generated using some utility method
+         params.salt = salt
+      &#125;
+      userInstance.properties = params
+      <span class="java&#45;keyword">if</span> (!userInstance.save(flush: <span class="java&#45;keyword">true</span>)) &#123;
+         render view: 'edit', model: &#91;userInstance: userInstance&#93;
+         <span class="java&#45;keyword">return</span>
+      &#125;<p class="paragraph"/>      <span class="java&#45;keyword">if</span> (usfCasService.loggedIn &#38;&#38;
+             usfCasService.principal.username == userInstance.username) &#123;
+         usfCasService.reauthenticate userInstance.username
+      &#125;<p class="paragraph"/>      flash.message = <span class="java&#45;quote">"The user was updated"</span>
+      redirect action: show, id: userInstance.id
+   &#125;
+&#125;</pre></div>
+
+
+<h2 id="taglib">4.2 CASTagLib</h2>
+The plugin includes GSP tags to support conditional display based on whether the user is authenticated, and/or has 
+the required EduPersonAffiliation or SpringSecurityRole to perform a particular action. These tags are in the <code>cas</code> namespace and are implemented in <code>edu.usf.cims.CASTagLib</code>.<p class="paragraph"/><h4>ifLoggedIn</h4>
+Displays the inner body content if the user is authenticated.<p class="paragraph"/>Example:<p class="paragraph"/><div class="code"><pre>&#60;cas:ifLoggedIn&#62;
+Welcome Back!
+&#60;/cas:ifLoggedIn&#62;</pre></div><p class="paragraph"/><h4>ifNotLoggedIn</h4>
+Displays the inner body content if the user is not authenticated.<p class="paragraph"/>Example:<p class="paragraph"/><div class="code"><pre>&#60;cas:ifNotLoggedIn&#62;
+&#60;g:link controller='login' action='auth'&#62;Login&#60;/g:link&#62;
+&#60;/cas:ifNotLoggedIn&#62;</pre></div><p class="paragraph"/><h4>ifEPPA</h4>
+Displays the inner body content only if the user's EPPA matches the listed value<p class="paragraph"/>Example:<p class="paragraph"/><div class="code"><pre>&#60;cas:ifEPPA eppa=<span class="java&#45;quote">"faculty"</span>&#62;
+This text is only visible by faculty
+&#60;/cas:ifEPPA&#62;</pre></div><p class="paragraph"/><h4>ifNotEPPA</h4>
+Displays the inner body content only if the user's EPPA <strong class="bold">does not</strong> match the listed value<p class="paragraph"/>Example:<p class="paragraph"/><div class="code"><pre>&#60;cas:ifNotEPPA eppa=<span class="java&#45;quote">"student"</span>&#62;
+Students can't read <span class="java&#45;keyword">this</span>
+&#60;/cas:ifNotEPPA&#62;</pre></div><p class="paragraph"/>
+<h4>attribute</h4>
+Displays the value of the specified attribute if logged in. For example, to show the <code>mail</code> property:<p class="paragraph"/><div class="code"><pre>&#60;cas:attribute name=<span class="java&#45;quote">"mail"</span>/&#62;</pre></div><p class="paragraph"/><h4>username</h4>
+Displays the value of the authentication <code>username</code> field if logged in.<p class="paragraph"/><div class="code"><pre>&#60;cas:ifLoggedIn&#62;
+Welcome Back &#60;cas:username/&#62;!
+&#60;/cas:ifLoggedIn&#62;
+&#60;cas:ifNotLoggedIn&#62;
+&#60;g:link controller='login' action='auth'&#62;Login&#60;/g:link&#62;
+&#60;/cas:ifNotLoggedIn&#62;</pre></div><p class="paragraph"/><h4>eppa</h4>
+Displays the value of the EduPersonPrimaryAffiliation if logged in.<p class="paragraph"/><div class="code"><pre>Your Primary Affiliation is &#60;cas:eppa/&#62;</pre></div>
+
+
+                    </div>
+                </td>
+                <td id="col2">
+            <div class="local clearfix">
+                <div class="local-title">
+                    <a href="../guide/index.html" target="mainFrame">Quick Reference</a>
+                    <span class="toggle">(<a href="#" onclick="localToggle(); return false;">hide</a>)</span>
+                </div>
+                <div class="menu">
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Scripts</h1><div class="menu-sub">
+                        
+                        
+                        <div class="menu-item"><a href="../ref/Scripts/usf-cas-config.html">usf-cas-config</a>
+                        </div>
+                        
+                        </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Tags</h1><div class="menu-sub">
+                        
+                        
+                        <div class="menu-item"><a href="../ref/Tags/attribute.html">attribute</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Tags/eppa.html">eppa</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Tags/ifEPPA.html">ifEPPA</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Tags/ifLoggedIn.html">ifLoggedIn</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Tags/ifNotLoggedIn.html">ifNotLoggedIn</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Tags/username.html">username</a>
+                        </div>
+                        
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </td>
+            </tr>
+        </table>
+
+        <div id="footer">
+            
+            
+        </div>
+
+
+
+<script type="text/javascript" src="../js/docs.js"></script>
+
+    </body>
+</html>
