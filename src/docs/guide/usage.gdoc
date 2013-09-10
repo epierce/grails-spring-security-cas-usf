@@ -10,8 +10,8 @@ h4. Installation
 Download the latest version of the plugin zip file from [GitHub|https://github.com/epierce/grails-spring-security-cas-usf/raw/master/spring-security-cas-usf-1.3.0.zip], drop it into the @lib@ directory of your Grails project and update @grails-app/conf/BuildConfig.groovy@:
 {code}
   plugins {
-        compile ":spring-security-core:1.2.7.3"
-        compile ":spring-security-cas-usf:1.3.0"
+        compile ':spring-security-core:1.2.7.3'
+        compile ':spring-security-cas-usf:1.3.0'
   }
 {code}
 
