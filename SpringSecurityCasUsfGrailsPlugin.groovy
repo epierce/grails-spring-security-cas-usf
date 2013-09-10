@@ -32,7 +32,7 @@ import org.springframework.security.core.userdetails.UserDetailsByNameServiceWra
 
 class SpringSecurityCasUsfGrailsPlugin {
 
-	String version = '1.2.1'
+	String version = '1.3.0'
 	String grailsVersion = '2.2.1 > *'
 	Map dependsOn = [springSecurityCore: '1.2.7.3 > *']
 	List pluginExcludes = [
@@ -46,8 +46,6 @@ class SpringSecurityCasUsfGrailsPlugin {
 	String authorEmail = 'epierce@usf.edu'
 	String title = 'USF CAS Spring Security plugin.'
 	String description = 'USF-specific changes to the CAS Spring Security plugin.'
-
-	String documentation = 'http://bullpen.jira.com/wiki'
 
 	def doWithWebDescriptor = { xml ->
 
@@ -155,9 +153,7 @@ class SpringSecurityCasUsfGrailsPlugin {
 			continueChainBeforeSuccessfulAuthentication = conf.apf.continueChainBeforeSuccessfulAuthentication // false
 			allowSessionCreation = conf.apf.allowSessionCreation // true
 			proxyReceptorUrl = conf.cas.proxyReceptorUrl
-		}
-
-		
+		}	
 
 		if(!conf.cas.useSamlValidator){
 			casProxyRetriever(Cas20ProxyRetriever, conf.cas.serverUrlPrefix)
